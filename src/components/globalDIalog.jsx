@@ -17,7 +17,7 @@ const GlobalDialog = () => {
       onCloseComplete={() => handleClose(false)}
       shouldCloseOnOverlayClick={false}
       hasFooter={false}
-      width="50%"
+      width="auto"
       containerProps={{
         backgroundColor: "#101840", // Dark background for the dialog
       }}
