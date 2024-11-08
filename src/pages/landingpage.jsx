@@ -1,19 +1,16 @@
-import {
-  Pane,
-  Text,
-  Button,
-  Heading,
-  Card,
-  Icon,
-  majorScale,
-} from "evergreen-ui";
+import { Pane, Text, Button, Heading, Card, majorScale } from "evergreen-ui";
+import { useDialogContext } from "../context/Dialog";
 import Navbar from "../components/ui/navbar";
 import Footer from "../components/ui/footer";
+import WhatsAppButton from "../components/ui/whatsappButton";
+import ContactForm from "../forms/contact";
+import { cardData, partnerships } from "../const";
 
 const LandingPage = () => {
+  const { callDialog, handleClose } = useDialogContext();
 
   return (
-    <Pane>
+    <Pane top={0} left={0} width="100%">
       {/* Navbar */}
       <Navbar />
 
@@ -29,110 +26,123 @@ const LandingPage = () => {
         textAlign="center"
       >
         <Heading size={900} color="white" marginBottom={majorScale(2)}>
-          Welcome to Our Solution
+          Bienvenido a Capital Brokers Financial Group
         </Heading>
         <Text size={500} color="white" marginBottom={majorScale(4)}>
-          Discover a seamless experience to boost your business potential.
+          Tu socio ideal para obtener el crédito adecuado, mejorar tus
+          condiciones, y alcanzar tus metas financieras.
         </Text>
-        <Button appearance="primary" size="large" color="white">
-          Get Started
+        <Button
+          appearance="primary"
+          size="large"
+          color="white"
+          onClick={() => {
+            callDialog({
+              component: <ContactForm handleClose={handleClose} />,
+              open: true,
+              title: "Contacto",
+            });
+          }}
+        >
+          Agenda tu asesoria
         </Button>
       </Pane>
 
-      {/* About Us Section */}
+      {/* Services Section */}
       <Pane
-        id="nosotros"
+        id="servicios"
         display="flex"
-        justifyContent="space-around"
+        flexDirection="column"
         alignItems="center"
+        justifyContent="center" // Center vertically
         height="100vh"
-        paddingY={majorScale(6)}
-      >
-        <Card
-          background="white"
-          padding={majorScale(4)}
-          elevation={1}
-          borderRadius={8}
-          textAlign="center"
-        >
-          <Icon
-            icon="star"
-            color="primary"
-            size={40}
-            marginBottom={majorScale(2)}
-          />
-          <Heading size={600} color="textDark" marginBottom={majorScale(1)}>
-            Feature One
-          </Heading>
-          <Text size={400} color="muted">
-            Enhance your productivity with our top-notch feature designed just
-            for you.
-          </Text>
-        </Card>
-
-        <Card
-          background="white"
-          padding={majorScale(4)}
-          elevation={1}
-          borderRadius={8}
-          textAlign="center"
-        >
-          <Icon
-            icon="timeline-bar-chart"
-            color="primary"
-            size={40}
-            marginBottom={majorScale(2)}
-          />
-          <Heading size={600} color="textDark" marginBottom={majorScale(1)}>
-            Feature Two
-          </Heading>
-          <Text size={400} color="muted">
-            Analyze data effortlessly with real-time insights and reports.
-          </Text>
-        </Card>
-
-        <Card
-          background="white"
-          padding={majorScale(4)}
-          elevation={1}
-          borderRadius={8}
-          textAlign="center"
-        >
-          <Icon
-            icon="cog"
-            color="primary"
-            size={40}
-            marginBottom={majorScale(2)}
-          />
-          <Heading size={600} color="textDark" marginBottom={majorScale(1)}>
-            Feature Three
-          </Heading>
-          <Text size={400} color="muted">
-            Customize your experience with flexible settings and options.
-          </Text>
-        </Card>
-      </Pane>
-
-      {/* Call to Action */}
-      {/* <Pane
-        background="backgroundDark"
-        paddingY={majorScale(6)}
         textAlign="center"
       >
-        <Heading
-          size={800}
-          color="backgroundLight"
-          marginBottom={majorScale(2)}
-        >
-          Ready to Get Started?
+        <Heading size={800} color="white" marginBottom={8}>
+          Explora Nuestras Opciones de Crédito
         </Heading>
-        <Button appearance="primary" size="large" color="white">
-          Join Now
-        </Button>
-      </Pane> */}
+        <Text color="white" textAlign="center" maxWidth={600} marginBottom={16}>
+          Encuentra el crédito adecuado para tus necesidades, ya sea para
+          adquirir una vivienda, remodelar, o hacer crecer tu negocio.
+        </Text>
 
-      {/* Footer */}
+        <Pane
+          display="flex"
+          flexWrap="wrap"
+          flexDirection="row"
+          justifyContent="center"
+          height="auto"
+          gap={16}
+        >
+          {cardData.map((item, index) => (
+            <Card
+              key={index}
+              elevation={2}
+              backgroundColor="white"
+              padding={16}
+              display="flex"
+              flexDirection="column"
+              flexBasis="30%"
+              justifyContent="space-between"
+              alignItems="center"
+            >
+              <Pane display="flex" flexDirection="column" alignItems="center">
+                <item.icon color="default" size={32} paddingBottom={4} />
+                <Heading size={600}>{item.title}</Heading>
+                <Text color="muted" marginTop={8}>
+                  {item.description}
+                </Text>
+              </Pane>
+              <Button appearance="primary" marginTop={16}>
+                Más información
+              </Button>
+            </Card>
+          ))}
+        </Pane>
+        <Pane
+          display="flex"
+          flexWrap="wrap"
+          flexDirection="row"
+          justifyContent="center"
+          gap={16}
+          marginTop={majorScale(2)}
+        >
+          {partnerships.map((bank, index) => (
+            <Pane
+              key={index}
+              className="bank-card"
+              elevation={2}
+              backgroundColor="white"
+              padding={8}
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+              textAlign="center"
+              border="1px solid #ddd"
+              borderRadius={8}
+            >
+              <img
+                src={bank.logoUrl}
+                alt={`Logo de ${bank.name}`}
+                style={{
+                  width: "100px",
+                  height: "80px",
+                  objectFit: "contain",
+                  filter: "grayscale(100%)",
+                  transition: "filter 0.3s ease",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.filter = "none")}
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.filter = "grayscale(100%)")
+                }
+              />
+            </Pane>
+          ))}
+        </Pane>
+      </Pane>
       <Footer />
+      <WhatsAppButton />
     </Pane>
   );
 };
