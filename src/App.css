@@ -1,5 +1,5 @@
 body {
-  background-image: url('src/assets/background.jpeg'); /* Change to local file path */
+  background-image: url('/background.jpeg'); /* Change to local file path */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

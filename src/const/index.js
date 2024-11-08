@@ -41,17 +41,17 @@ export const cardData = [
 ];
 
 export const partnerships = [
-  { name: "BBVA", logoUrl: "src/assets/img/bbva.png" },
-  { name: "Santander", logoUrl: "src/assets/img/santander.png" },
-  { name: "Banorte", logoUrl: "src/assets/img/banorte.png" },
-  { name: "HSBC", logoUrl: "src/assets/img/hsbc.png" },
-  { name: "Scotiabank", logoUrl: "src/assets/img/scotiabank.png" },
-  { name: "Afirme", logoUrl: "src/assets/img/afirme.png" },
-  { name: 'Yave' , logoUrl: "src/assets/img/yave.png" },
-  { name: 'Hey Banco' , logoUrl: "src/assets/img/hey-banco.jpg" },
-  { name: 'Banca Mifel', logoUrl: "src/assets/img/banca-mifel.webp" },
-  { name: 'Kredi', logoUrl: "src/assets/img/kredi.png" },
-  {name: 'ION', logoUrl: "src/assets/img/ion.webp" },
+  { name: "BBVA", logoUrl: "/img/bbva.png" },
+  { name: "Santander", logoUrl: "/img/santander.png" },
+  { name: "Banorte", logoUrl: "/img/banorte.png" },
+  { name: "HSBC", logoUrl: "/img/hsbc.png" },
+  { name: "Scotiabank", logoUrl: "/img/scotiabank.png" },
+  { name: "Afirme", logoUrl: "/img/afirme.png" },
+  { name: 'Yave' , logoUrl: "/img/yave.png" },
+  { name: 'Hey Banco' , logoUrl: "/img/hey-banco.jpg" },
+  { name: 'Banca Mifel', logoUrl: "/img/banca-mifel.webp" },
+  { name: 'Kredi', logoUrl: "/img/kredi.png" },
+  {name: 'ION', logoUrl: "/img/ion.webp" },
   
   // Add more banks as needed
 ];
