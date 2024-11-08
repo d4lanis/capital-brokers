@@ -1,12 +1,10 @@
-/* eslint-disable no-unused-vars */
+
 import { Button, Heading, Link, Pane, majorScale } from "evergreen-ui";
-import { useSideSheetContext } from "../../context/SideSheet";
 import { useDialogContext } from "../../context/Dialog";
 import ContactForm from "../../forms/contact";
 
 const Navbar = () => {
-  const { callSideSheet, sideSheetState } = useSideSheetContext();
-  const { callDialog, dialogState, handleClose } = useDialogContext();
+  const { callDialog, handleClose } = useDialogContext();
   return (
     <Pane
       position="fixed" // Fixes the navbar at the top
@@ -23,7 +21,7 @@ const Navbar = () => {
       background="dark" // Background color for visibility
     >
       <Heading size={800} color="white">
-        BrandName
+        Capital Brokers
       </Heading>
       <Pane display="flex" alignItems="center">
         <Link
@@ -36,13 +34,13 @@ const Navbar = () => {
           Inicio
         </Link>
         <Link
-          href="#nosotros"
+          href="#servicios"
           marginRight={16}
           style={{
             transition: "color 0.3s ease",
           }}
         >
-          Nosotros
+          Servicios
         </Link>
 
         <Button
