@@ -1,0 +1,33 @@
+name: Bug Report
+description: Report a bug to help improve the project.
+title: "[BUG] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Please fill out the sections below to help us investigate the issue.**
+
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Describe the environment in which you found the bug (e.g., OS, browser).
+      placeholder: e.g., Windows 10, Chrome 89
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe the bug in detail.
+      placeholder: Provide a detailed description of the issue.
+
+  - type: checkboxes
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: What steps should we follow to reproduce the issue?
+      options:
+        - label: Open the application
+        - label: Log in with a test account
+        - label: Perform the action that causes the issue
