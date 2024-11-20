@@ -57,8 +57,8 @@ export const partnerships = [
 ];
 
 export const socialMedia = [
-  { name: "Facebook", icon: FaFacebook, link: "https://www.facebook.com/capitalbrokerssaltillo" },
-  { name: "Instagram", icon: FaInstagram, link: "https://www.instagram.com/capital.brokersfg" },
-  { name: "Whatsapp", icon: FaWhatsapp, link: "https://wa.me/+528442899086" },
-  { name: "Email", icon: FaEnvelope, link: "mailto:capitalbrokers.saltillo@gmail.com" },
+  { name: "Facebook", icon: FaFacebook, link: import.meta.env.VITE_FA_LINK },
+  { name: "Instagram", icon: FaInstagram, link: import.meta.env.VITE_IG_LINK },
+  { name: "Whatsapp", icon: FaWhatsapp, link:  import.meta.env.VITE_WA_LINK },
+  { name: "Email", icon: FaEnvelope, link: import.meta.env.VITE_EMAIL },
 ];

@@ -20,7 +20,7 @@ const LandingPage = () => {
         display="flex"
         flexDirection="column"
         alignItems="center"
-        justifyContent="center" // Center vertically
+        justifyContent="center"
         paddingY={majorScale(6)}
         height="100vh"
         textAlign="center"
@@ -54,9 +54,10 @@ const LandingPage = () => {
         display="flex"
         flexDirection="column"
         alignItems="center"
-        justifyContent="center" // Center vertically
-        height="100vh"
+        justifyContent="center"
+        height="auto"
         textAlign="center"
+        paddingY={majorScale(6)}
       >
         <Heading size={800} color="white" marginBottom={8}>
           Explora Nuestras Opciones de Crédito
@@ -71,7 +72,6 @@ const LandingPage = () => {
           flexWrap="wrap"
           flexDirection="row"
           justifyContent="center"
-          height="auto"
           gap={16}
         >
           {cardData.map((item, index) => (
@@ -82,9 +82,12 @@ const LandingPage = () => {
               padding={16}
               display="flex"
               flexDirection="column"
-              flexBasis="30%"
               justifyContent="space-between"
               alignItems="center"
+              maxWidth="300px"
+              width="100%"
+              margin="10px"
+              // Ensure each card takes full width on mobile
             >
               <Pane display="flex" flexDirection="column" alignItems="center">
                 <item.icon color="default" size={32} paddingBottom={4} />
@@ -99,10 +102,11 @@ const LandingPage = () => {
             </Card>
           ))}
         </Pane>
+
+        {/* Partnership Logos Section */}
         <Pane
           display="flex"
           flexWrap="wrap"
-          flexDirection="row"
           justifyContent="center"
           gap={16}
           marginTop={majorScale(2)}
@@ -121,6 +125,9 @@ const LandingPage = () => {
               textAlign="center"
               border="1px solid #ddd"
               borderRadius={8}
+              maxWidth="200px"
+              width="100%"
+              margin="10px"
             >
               <img
                 src={bank.logoUrl}
@@ -141,6 +148,7 @@ const LandingPage = () => {
           ))}
         </Pane>
       </Pane>
+
       <Footer />
       <WhatsAppButton />
     </Pane>

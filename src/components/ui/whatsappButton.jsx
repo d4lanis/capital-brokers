@@ -3,7 +3,7 @@ import { FaWhatsapp } from "react-icons/fa";
 
 const WhatsAppButton = () => {
   const handleWhatsAppClick = () => {
-    window.open("https://wa.me/1234567890", "_blank"); // Replace with your WhatsApp link
+    window.open(import.meta.env.VITE_WA_LINK, "_blank"); // Replace with your WhatsApp link
   };
 
   return (
