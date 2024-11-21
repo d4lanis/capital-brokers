@@ -24,13 +24,11 @@ jobs:
           sudo apt-get install -y python3-pip
           pip3 install awscli --upgrade --user
 
-      - name: Set up node
-        uses: actions/setup-node@v4
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
         with:
-          node-version: '20'
-
-      - name: Install dependencies
-        run: npm ci
+          role-to-assume: arn:aws:iam::925173698100:role/github-actions-d4lanis
+          aws-region: us-east-1
 
       - name: Fetch environment variables
         run: |
@@ -39,14 +37,16 @@ jobs:
           aws ssm get-parameter --name "VITE_IG_LINK" --region us-east-1 --query "Parameter.Value" --output text >> .env
           aws ssm get-parameter --name "VITE_WA_LINK" --region us-east-1 --query "Parameter.Value" --output text >> .env
 
+      - name: Set up node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
       - name: Build site
         run: npm run build
-
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: arn:aws:iam::925173698100:role/github-actions-d4lanis
-          aws-region: us-east-1
 
       - name: Deploy to S3
         run: |
