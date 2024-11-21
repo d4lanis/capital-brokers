@@ -24,18 +24,28 @@ jobs:
           sudo apt-get install -y python3-pip
           pip3 install awscli --upgrade --user
 
-      - name: Configure AWS credentials
+      - name: Configure AWS credentials (OIDC)
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::925173698100:role/github-actions-d4lanis
           aws-region: us-east-1
 
-      - name: Fetch environment variables
-        run: |
-          aws ssm get-parameter --name "VITE_EMAIL" --region us-east-1 --query "Parameter.Value" --output text > .env
-          aws ssm get-parameter --name "VITE_FA_LINK" --region us-east-1 --query "Parameter.Value" --output text >> .env
-          aws ssm get-parameter --name "VITE_IG_LINK" --region us-east-1 --query "Parameter.Value" --output text >> .env
-          aws ssm get-parameter --name "VITE_WA_LINK" --region us-east-1 --query "Parameter.Value" --output text >> .env
+      - name: Get Parameters from SSM
+        uses: avlima/aws-ssm-env@master
+        with:
+          aws-region: us-east-1
+          role-to-assume: arn:aws:iam::925173698100:role/github-actions-d4lanis
+          ssm_parameter_list: "VITE_EMAIL"
+          ssm_parameter_list: "VITE_FA_LINK"
+          ssm_parameter_list: "VITE_IG_LINK"
+          ssm_parameter_list: "VITE_WA_LINK"
+
+      # - name: Fetch environment variables
+      #   run: |
+      #     aws ssm get-parameter --name "VITE_EMAIL" --region us-east-1 --query "Parameter.Value" --output text > .env
+      #     aws ssm get-parameter --name "VITE_FA_LINK" --region us-east-1 --query "Parameter.Value" --output text >> .env
+      #     aws ssm get-parameter --name "VITE_IG_LINK" --region us-east-1 --query "Parameter.Value" --output text >> .env
+      #     aws ssm get-parameter --name "VITE_WA_LINK" --region us-east-1 --query "Parameter.Value" --output text >> .env
 
       - name: Set up node
         uses: actions/setup-node@v4
