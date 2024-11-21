@@ -30,15 +30,13 @@ jobs:
           role-to-assume: arn:aws:iam::925173698100:role/github-actions-d4lanis
           aws-region: us-east-1
 
-      - name: Get Parameters from SSM
-        uses: avlima/aws-ssm-env@master
-        with:
-          aws-region: us-east-1
-          role-to-assume: arn:aws:iam::925173698100:role/github-actions-d4lanis
-          ssm_parameter_list: "VITE_EMAIL"
-          ssm_parameter_list: "VITE_FA_LINK"
-          ssm_parameter_list: "VITE_IG_LINK"
-          ssm_parameter_list: "VITE_WA_LINK"
+      - name: check credentials are valid
+        run: | 
+           mkdir -p ~/.aws && \
+           echo "[default]" > ~/.aws/credentials && \
+           echo "aws_access_key_id=${AWS_ACCESS_KEY_ID}" >> ~/.aws/credentials && \
+           echo "aws_secret_access_key=${AWS_SECRET_ACCESS_KEY}" >> ~/.aws/credentials && \
+           cat ~/.aws/credentials
 
       # - name: Fetch environment variables
       #   run: |
