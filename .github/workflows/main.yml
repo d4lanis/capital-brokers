@@ -44,6 +44,13 @@ jobs:
           echo "VITE_IG_LINK: $VITE_IG_LINK"
           echo "VITE_WA_LINK: $VITE_WA_LINK"
 
+      - name: Write environment variables to .env file
+        run: |
+          echo "VITE_EMAIL=$VITE_EMAIL" >> .env
+          echo "VITE_FA_LINK=$VITE_FA_LINK" >> .env
+          echo "VITE_IG_LINK=$VITE_IG_LINK" >> .env
+          echo "VITE_WA_LINK=$VITE_WA_LINK" >> .env
+
       - name: Set up node
         uses: actions/setup-node@v4
         with:
