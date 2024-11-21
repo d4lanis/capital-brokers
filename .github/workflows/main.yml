@@ -32,6 +32,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Fetch environment variables
+        run: |
+          aws ssm get-parameter --name "VITE_EMAIL" --region us-east-1 --query "Parameter.Value" --output text > .env
+          aws ssm get-parameter --name "VITE_FA_LINK" --region us-east-1 --query "Parameter.Value" --output text >> .env
+          aws ssm get-parameter --name "VITE_IG_LINK" --region us-east-1 --query "Parameter.Value" --output text >> .env
+          aws ssm get-parameter --name "VITE_WA_LINK" --region us-east-1 --query "Parameter.Value" --output text >> .env
+
       - name: Build site
         run: npm run build
 
