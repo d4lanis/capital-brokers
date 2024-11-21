@@ -30,19 +30,19 @@ jobs:
           role-to-assume: arn:aws:iam::925173698100:role/github-actions-d4lanis
           aws-region: us-east-1
 
-      - name: aws-ssm-to-env
+      - name: Get variables from parameter store
         uses: avlima/aws-ssm-to-env@master
         with:
           aws-region: us-east-1
           role-to-assume: arn:aws:iam::925173698100:role/github-actions-d4lanis
           ssm_parameter_list: "VITE_EMAIL,VITE_FA_LINK,VITE_IG_LINK,VITE_WA_LINK"
 
-      # - name: Fetch environment variables
-      #   run: |
-      #     aws ssm get-parameter --name "VITE_EMAIL" --region us-east-1 --query "Parameter.Value" --output text > .env
-      #     aws ssm get-parameter --name "VITE_FA_LINK" --region us-east-1 --query "Parameter.Value" --output text >> .env
-      #     aws ssm get-parameter --name "VITE_IG_LINK" --region us-east-1 --query "Parameter.Value" --output text >> .env
-      #     aws ssm get-parameter --name "VITE_WA_LINK" --region us-east-1 --query "Parameter.Value" --output text >> .env
+      - name: Print environment variables
+        run: |
+          echo "VITE_EMAIL: $VITE_EMAIL"
+          echo "VITE_FA_LINK: $VITE_FA_LINK"
+          echo "VITE_IG_LINK: $VITE_IG_LINK"
+          echo "VITE_WA_LINK: $VITE_WA_LINK"
 
       - name: Set up node
         uses: actions/setup-node@v4
